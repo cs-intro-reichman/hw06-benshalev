@@ -18,7 +18,7 @@ public class Runigram {
 		Color[][] imageOut;
 
 		// Tests the horizontal flipping of an image:
-		imageOut = flippedHorizontally(tinypic);
+		imageOut = flippedVertically(tinypic);
 		System.out.println();
 		print(imageOut);
 		
@@ -42,7 +42,15 @@ public class Runigram {
 		// creates from the 3 colors a new Color object, and 
 		// makes pixel (i,j) refer to that object.
 		//// Replace the following statement with your code.
-		return null;
+		for(int i = 0 ; i < numRows ; i++){
+			for(int j = 0 ; j < numCols ; j++){
+				int r = in.readInt();
+				int g = in.readInt();
+				int b = in.readInt();
+				image[i][j] = new Color(r,g,b);
+			}
+		}
+		return image;
 	}
 
     // Prints the RGB values of a given color.
@@ -61,24 +69,44 @@ public class Runigram {
 	// we can apply the function and then use this function to print the resulting image.
 	private static void print(Color[][] image) {
 		//// Replace this comment with your code
+		for(int i = 0 ; i < image.length ; i++){
+			for(int j = 0 ; j < image[0].length ; j++){
+				print(image[i][j]);
+			}
+		System.out.println();
+		}
 	}
 	
 	/**
 	 * Returns an image which is the horizontally flipped version of the given image. 
 	 */
 	public static Color[][] flippedHorizontally(Color[][] image) {
-		//// Replace the following statement with your code
-		return null;
-	}
+		int reversevertical = (image[0].length - 1);
+		Color[][] flipuptodown = new Color[image.length][image[0].length];
+		for(int j = 0 ; j < image[0].length ; j++){
+			for(int i = 0 ; i < image.length ; i++){
+				flipuptodown[i][reversevertical - j] = image[i][j];
 	
+			}
+		}
+		return flipuptodown;
+	}
 	/**
 	 * Returns an image which is the vertically flipped version of the given image. 
 	 */
+	//// Replace the following statement with your code
 	public static Color[][] flippedVertically(Color[][] image){
 		//// Replace the following statement with your code
-		return null;
+		int reversedcol = (image.length - 1);
+		Color[][] flip = new Color[image.length][image[0].length];
+		for(int i = 0 ; i < image.length ; i++){
+			for(int j = 0 ; j < image[0].length ; j++){
+				flip[reversedcol - i][j] = image[i][j];
+			}
+		}
+		return flip;
+		
 	}
-	
 	// Computes the luminance of the RGB values of the given pixel, using the formula 
 	// lum = 0.299 * r + 0.587 * g + 0.114 * b, and returns a Color object consisting
 	// the three values r = lum, g = lum, b = lum.
