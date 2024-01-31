@@ -213,6 +213,18 @@ public class Runigram {
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
 		//// Replace this comment with your code
+		int alpha = 0;
+		Color[][] mixpixel2 = new Color [source.length][source[0].length];
+		target = scaled(target, source.length, source[0].length);
+		for(int t = 1 ; t <= n ; n ++){
+			alpha = (n - t)/n;
+			mixpixel2 = blend(source, target, alpha);
+			setCanvas(mixpixel2);
+			display(mixpixel2);
+			StdDraw.pause(3000); 
+
+		}
+
 	}
 	
 	/** Creates a canvas for the given image. */
