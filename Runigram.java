@@ -179,7 +179,11 @@ public class Runigram {
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
 		//// Replace the following statement with your code
-		return null;
+		int r = (int)((c1.getRed() * alpha) + ((1-alpha) * c2.getRed()));
+		int g = (int)((c1.getGreen() * alpha) + ((1-alpha) * c2.getGreen()));
+		int b = (int)((c1.getBlue() * alpha) + ((1-alpha) *  c2.getBlue()));
+		Color c = new Color(r,g,b);
+		return c;
 	}
 	
 	/**
@@ -188,9 +192,17 @@ public class Runigram {
 	 * and (1 - alpha) part the second image.
 	 * The two images must have the same dimensions.
 	 */
+	//// Replace the following statement with your code
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+		Color[][] mixpixel1 = new Color [image1.length][image1[0].length];
+		for(int i = 0  ; i < image1.length ; i ++){
+			for(int j = 0  ; j < image1[0].length ; j ++){
+				image1[i][j] = blend(image1[i][j], image2[i][j], alpha) ;
+			}	
+		
+		}
+		
+		return mixpixel1;
 	}
 
 	/**
