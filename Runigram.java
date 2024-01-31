@@ -28,6 +28,8 @@ public class Runigram {
 
 	/** Returns a 2D array of Color values, representing the image data
 	 * stored in the given PPM file. */
+
+	 //קליטת תמונה מהקובץ 
 	public static Color[][] read(String fileName) {
 		In in = new In(fileName);
 		// Reads the file header, ignoring the first and the third lines.
@@ -42,6 +44,7 @@ public class Runigram {
 		// creates from the 3 colors a new Color object, and 
 		// makes pixel (i,j) refer to that object.
 		//// Replace the following statement with your code.
+
 		for(int i = 0 ; i < numRows ; i++){
 			for(int j = 0 ; j < numCols ; j++){
 				int r = in.readInt();
@@ -54,6 +57,8 @@ public class Runigram {
 	}
 
     // Prints the RGB values of a given color.
+	
+	//תבנית הדפסה (נתון)
 	private static void print(Color c) {
 	    System.out.print("(");
 		System.out.printf("%3s,", c.getRed());   // Prints the red component
@@ -67,6 +72,8 @@ public class Runigram {
 	// This function is used for debugging purposes.
 	// For example, to check that some image processing function works correctly,
 	// we can apply the function and then use this function to print the resulting image.
+	
+	//הדפסת מערך התמונה המקורי
 	private static void print(Color[][] image) {
 		//// Replace this comment with your code
 		for(int i = 0 ; i < image.length ; i++){
@@ -80,36 +87,44 @@ public class Runigram {
 	/**
 	 * Returns an image which is the horizontally flipped version of the given image. 
 	 */
+
+	 // הופך תמונה מימן לשמאל
 	public static Color[][] flippedHorizontally(Color[][] image) {
-		int reversevertical = (image[0].length - 1);
-		Color[][] flipuptodown = new Color[image.length][image[0].length];
+		int reversedcol = (image[0].length - 1);
+		Color[][] flip = new Color[image.length][image[0].length];
 		for(int j = 0 ; j < image[0].length ; j++){
 			for(int i = 0 ; i < image.length ; i++){
-				flipuptodown[i][reversevertical - j] = image[i][j];
+				flip[i][reversedcol - j] = image[i][j];
 	
 			}
 		}
-		return flipuptodown;
+		return flip;
 	}
+	
 	/**
 	 * Returns an image which is the vertically flipped version of the given image. 
 	 */
 	//// Replace the following statement with your code
+
+	//הופך תמונה מלמעלה למטה
 	public static Color[][] flippedVertically(Color[][] image){
 		//// Replace the following statement with your code
-		int reversedcol = (image.length - 1);
-		Color[][] flip = new Color[image.length][image[0].length];
+		int reversevertical = (image.length - 1);
+		Color[][] flipuptodown = new Color[image.length][image[0].length];
 		for(int i = 0 ; i < image.length ; i++){
 			for(int j = 0 ; j < image[0].length ; j++){
-				flip[reversedcol - i][j] = image[i][j];
+				flipuptodown[reversevertical - i][j] = image[i][j];
 			}
 		}
-		return flip;
+		return flipuptodown;
 		
 	}
+	
 	// Computes the luminance of the RGB values of the given pixel, using the formula 
 	// lum = 0.299 * r + 0.587 * g + 0.114 * b, and returns a Color object consisting
 	// the three values r = lum, g = lum, b = lum.
+	
+	// הופך פיקסל לאפור
 	public static Color luminance(Color pixel) {
 		//// Replace the following statement with your code
 				double r = ((pixel.getRed()) * 0.299);
@@ -124,6 +139,7 @@ public class Runigram {
 	 * Returns an image which is the grayscaled version of the given image.
 	 */
 
+	//הופך תמונה לאפור
 	public static Color[][] grayScaled(Color[][] image) {
 		//// Replace the following statement with your code
 		Color[][] makegrey = new Color[image.length][image[0].length];
@@ -142,9 +158,18 @@ public class Runigram {
 	 * The image is scaled (resized) to have the given width and height.
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
-		//// Replace the following statement with your code
-		return null;
-	}
+		//// Replace the following statement with your code 
+		Color[][] changephoto = new Color [height][width];
+		int hightOriginalImage = image.length;
+		int widthOriginalImage = image[0].length;
+		for(int i = 0  ; i < height ; i ++){
+			for(int j = 0  ; j < width ; j ++){
+				changephoto[i][j] = image[ (int)((i* hightOriginalImage)/height) ][ (int)((j* widthOriginalImage)/width) ];
+			}	
+		
+		}
+	return changephoto;
+}
 	
 	/**
 	 * Computes and returns a blended color which is a linear combination of the two given
