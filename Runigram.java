@@ -197,7 +197,7 @@ public class Runigram {
 		Color[][] mixpixel1 = new Color [image1.length][image1[0].length];
 		for(int i = 0  ; i < image1.length ; i ++){
 			for(int j = 0  ; j < image1[0].length ; j ++){
-				image1[i][j] = blend(image1[i][j], image2[i][j], alpha) ;
+				mixpixel1[i][j] = blend(image1[i][j], image2[i][j], alpha) ;
 			}	
 		
 		}
@@ -213,15 +213,15 @@ public class Runigram {
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
 		//// Replace this comment with your code
-		int alpha = 0;
+		double alpha = 0;
 		Color[][] mixpixel2 = new Color [source.length][source[0].length];
-		target = scaled(target, source.length, source[0].length);
-		for(int t = 1 ; t <= n ; n ++){
-			alpha = (n - t)/n;
+		target = scaled(target, source[0].length, source.length);
+		for(int t = 1 ; t <= n ; t ++){
+			alpha = ((double)(n - t))/(double)n;
 			mixpixel2 = blend(source, target, alpha);
 			setCanvas(mixpixel2);
 			display(mixpixel2);
-			StdDraw.pause(3000); 
+			StdDraw.pause(300); 
 
 		}
 
